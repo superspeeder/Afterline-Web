@@ -1,0 +1,60 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}Login to Afterline{% endblock title %}
+
+{% block content %}
+
+
+<div id="form-container" class="container mt-3  border rounded border-3 p-3" style="max-width: 400pt">
+    <h1 class="mb-3">Login To Afterline</h1>
+    <hr/>
+
+    {% if next %}
+        <div class="alert alert-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Next Page: <code>{{ next }}</code>" data-bs-html="true">
+            {% if user.is_authenticated %}
+            Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.
+            {% else %}
+            Please login to see this page.
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            Your username or password was wrong.
+        </div>
+    {% endif %}
+
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="id_username" class="col-sm-2 col-form-label">Username:</label>
+            <div class="col-sm-10">
+                <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" class="form-control" placeholder="Enter your username">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="id_password" class="col-sm-2 col-form-label">Password:</label></td>
+            <div class="col-sm-10">
+                <input type="password" name="password" autocomplete="current-password" id="id_password" class="form-control" placeholder="Enter your password" required>
+            </div>
+        </div>
+            
+        <div class="d-flex btn-group" role="group">
+            <input type="submit" value="Login" class="form-control btn btn-success" style="width: 66%">
+            <a class="btn btn-warning" href="{% url 'password_reset' %}" style="width: 33%">Lost password?</a>
+        </div>
+        <input class="form-control" type="hidden" name="next" value="{{ next }}">
+    </form>
+</div>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+{% endblock content %}
