@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-from afterline.views import account_profile
+from afterline.views import account_profile, register_request
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/login/', auth_views.LoginView.as_view(template_name="registration/login.html"), name = 'login'),
-    path('account/logout/', auth_views.LogoutView.as_view(template_name="registration/logout.html"), name = 'logout'),
-    path('account/password_reset/', auth_views.PasswordResetView.as_view(template_name="registration/password_reset.html"), name = 'password_reset'),
-    path('account/profile/', account_profile, name = 'profile')
+    path('accounts/login/', auth_views.LoginView.as_view(template_name="registration/login.html"), name = 'login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(template_name="registration/logout.html"), name = 'logout'),
+    path('accounts/password_reset/', auth_views.PasswordResetView.as_view(template_name="registration/password_reset.html"), name = 'password_reset'),
+    path('accounts/profile/', account_profile, name = 'profile')
+    path('accounts/register/', register_request, name = 'profile')
 ]
