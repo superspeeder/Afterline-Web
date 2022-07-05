@@ -1,11 +1,11 @@
-{% extends 'registration/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Login to Afterline{% endblock title %}
 
 {% block content %}
 
 
-<div id="form-container" class="container mt-3  border rounded border-3 p-3" style="max-width: 400pt">
+<div id="form-container" class="container border rounded border-3 p-3" style="max-width: 400pt;margin-top:75.5px">
     <h1 class="mb-3">Login To Afterline</h1>
     <hr/>
 
@@ -37,7 +37,7 @@
         </div>
 
         <div class="mb-3 row">
-            <label for="id_password" class="col-sm-2 col-form-label">Password:</label></td>
+            <label for="id_password" class="col-sm-2 col-form-label">Password:</label>
             <div class="col-sm-10">
                 <input type="password" name="password" autocomplete="current-password" id="id_password" class="form-control" placeholder="Enter your password" required>
             </div>
@@ -49,6 +49,8 @@
         </div>
         <input class="form-control" type="hidden" name="next" value="{{ next }}">
     </form>
+	<div class="text-center mt-1">If you don't have an account, <a href="{% url 'register' %}{% if next %}?next={% autoescape on %}{{ next }}{% endautoescape %}{% endif %}">register</a> for one instead.</div>
+
 </div>
 
 <script>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ campaign.title }}{% endblock %}
+
+{% block content %}
+
+<div class="container border rounded border-3 p-3" style="max-width: 400pt;margin-top:76px">
+    <div class="text-center">
+        <h1 class="mb-3">Campaigns I Run</h1>
+    </div>
+    <hr/>
+
+    <div class="list-group row">
+        {% for c in ran_games %}
+        <a class="list-group-item list-group-item-action fs-5" href="{% url 'view_campaign' c.id %}" style="margin-left: 10pt;margin-right: 10pt; width: 370pt">{{ c.title }}</a>
+        {% endfor %}
+    </div>
+
+    <br>
+    <div class="text-center">
+        <h1 class="mb-3">Campaigns I Play In</h1>
+    </div>
+    <hr/>
+
+    <div class="list-group row">
+    {% for c in member_games %}
+        <a class="list-group-item list-group-item-action fs-5" href="{% url 'view_campaign' c.id %}" style="margin-left: 10pt;margin-right: 10pt; width: 370pt">{{ c.title }}</a>
+    {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

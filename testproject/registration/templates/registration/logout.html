@@ -1,11 +1,13 @@
-{% extends 'registration/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Logged Out From Afterline{% endblock title %}
 
 {% block content %}
 
-<h1>You were logged out of Afterline</h1>
-
+<div class="m-3">
+    <h1 style="margin-top:76px">You were logged out of Afterline</h1>
+    <h3><a href="{% url 'login' %}">Login</a> to another account?</h3>
+</div>
 
 
 {% endblock content %}

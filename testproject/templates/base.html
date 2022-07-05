@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <title>{% block title %}{% endblock %}</title>
+
+        <link rel="shortcut icon" type="image/png" href="{% static '/favicon.ico' %}"/>
+
+        {% block head %}{% endblock %}
+
+        <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+        <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+
+
+    </head>
+    <body {% block body_attrib %}{% endblock %}>
+
+        {% block content %}{% endblock %}
+
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #387BE4;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static '/favicon.ico' %}" alt="Afterline" width="32" height="32">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAcct" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAcct">
+                                <li><a class="dropdown-item" href="/accounts/profile">Profile</a></li>
+                                <li><a class="dropdown-item" href="/accounts/login?next=/">Login</a></li>
+                                <li><a class="dropdown-item" href="/accounts/logout?next=/">Logout</a></li>
+                                <li><a class="dropdown-item" href="/accounts/register?next=/">Register</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCampaign" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Campaigns
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCampaign">
+                                <li><a class="dropdown-item" href="/campaigns/">My Campaigns</a></li>
+                                <li><a class="dropdown-item" href="/campaigns/create">Create a Campaign</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCampaign" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                About
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCampaign">
+                                <li><a class="dropdown-item" href="/about/">About Us</a></li>
+                                <li><a class="dropdown-item" href="/about/contact">Contact Us</a></li>
+                                <li><a class="dropdown-item" href="/about/credits">Credits</a></li>
+                                <li><a class="dropdown-item" href="/about/terms-of-service">Terms of Service</a></li>
+                                <li><a class="dropdown-item" href="/about/privacy-policy">Privacy Policy</a></li>
+                                <li><a class="dropdown-item" href="/about/copyright">Copyright</a></li>
+                            </ul>
+                        </li>
+                        {% if request.user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/">Admin</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </body>
+</html>
