@@ -62,10 +62,15 @@ def create_campaign(request: HttpRequest):
     form = CreateCampaignForm(request.user)
     return render(request=request, template_name="afterline/campaign/create.html", context={"form": form})
 
+
 @login_required
 def view_campaign(request: HttpRequest, id: int):
     camp = get_object_or_404(models.Campaign, pk=id)
-    return render(request=request, template_name="afterline/campaign/view.html", context={"campaign": camp})
+    players = models.Player.objects.filter(game=camp)
+
+    return render(request=request, template_name="afterline/campaign/view.html",
+                  context={"campaign": camp, "players": players})
+
 
 @login_required
 def my_campaigns(request: HttpRequest):

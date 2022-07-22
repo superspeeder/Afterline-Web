@@ -5,8 +5,12 @@
     <option name="openedFilesInfos">
       <list>
         <OpenedFileInfo>
-          <option name="caretOffset" value="0" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/README.md" />
+          <option name="caretOffset" value="113" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/testproject/registration/templates/registration/register.html" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="1100" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/testproject/registration/templates/registration/profile.html" />
         </OpenedFileInfo>
       </list>
     </option>

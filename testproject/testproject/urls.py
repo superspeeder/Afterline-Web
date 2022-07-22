@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.templatetags.static import static
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 import afterline.views as af_views
 
@@ -41,4 +42,5 @@ urlpatterns = [
     path('campaigns/create/', af_views.create_campaign, name='create_campaign'),
     path('campaign/<int:id>/', af_views.view_campaign, name='view_campaign'),
     path('campaigns/', af_views.my_campaigns, name='campaigns'),
+    path('favicon.ico/', lambda r: redirect(static('favicon.ico')), name='favicon.ico'),
 ]

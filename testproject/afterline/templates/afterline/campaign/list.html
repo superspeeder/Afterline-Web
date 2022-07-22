@@ -1,32 +1,62 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ campaign.title }}{% endblock %}
+{% block title %}My Campaigns{% endblock %}
 
 {% block content %}
 
-<div class="container border rounded border-3 p-3" style="max-width: 400pt;margin-top:76px">
+<div class="container border rounded border-3 p-3" style="margin-top:76px">
     <div class="text-center">
-        <h1 class="mb-3">Campaigns I Run</h1>
+        <h1 class="mb-3">My Campaigns</h1>
     </div>
     <hr/>
-
-    <div class="list-group row">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for c in ran_games %}
-        <a class="list-group-item list-group-item-action fs-5" href="{% url 'view_campaign' c.id %}" style="margin-left: 10pt;margin-right: 10pt; width: 370pt">{{ c.title }}</a>
+            <a href="{% url 'view_campaign' c.id %}" class="col text-reset text-decoration-none">
+                <div class="card h-100">
+                    <img src="https://st2.depositphotos.com/48519832/46157/i/450/depositphotos_461576056-stock-photo-simple-abstract-background-technology-pattern.jpg" class="card-img-top" alt="Campaign Image">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <h5 class="card-title">{{ c.title }}</h5>
+                            <span class="badge bg-success ms-auto align-self-center rounded-pill">GM</span>
+                        </div>
+                        <hr/>
+                        <div class="card-text">
+                            {%  autoescape off %}
+                            {{ c.description }}
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        {% for c in member_games %}
+            <a href="{% url 'view_campaign' c.id %}" class="col text-reset text-decoration-none">
+                <div class="card h-100">
+                    <img src="https://st2.depositphotos.com/48519832/46157/i/450/depositphotos_461576056-stock-photo-simple-abstract-background-technology-pattern.jpg" class="card-img-top" alt="Campaign Image">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <h5 class="card-title">{{ c.title }}</h5>
+                        </div>
+                        <hr/>
+                        <div class="card-text">
+                            {%  autoescape off %}
+                            {{ c.description }}
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                </div>
+            </a>
         {% endfor %}
     </div>
 
-    <br>
-    <div class="text-center">
-        <h1 class="mb-3">Campaigns I Play In</h1>
-    </div>
-    <hr/>
-
-    <div class="list-group row">
-    {% for c in member_games %}
-        <a class="list-group-item list-group-item-action fs-5" href="{% url 'view_campaign' c.id %}" style="margin-left: 10pt;margin-right: 10pt; width: 370pt">{{ c.title }}</a>
-    {% endfor %}
-    </div>
+{#    <div class="list-group row">#}
+{#        {% for c in ran_games %}#}
+{#        <a class="list-group-item list-group-item-action fs-5" href="{% url 'view_campaign' c.id %}" style="margin-left: 10pt;margin-right: 10pt; width: 370pt">{{ c.title }}<span class="badge"></span></a>#}
+{#        {% endfor %}#}
+{#        {% for c in member_games %}#}
+{#        <a class="list-group-item list-group-item-action fs-5" href="{% url 'view_campaign' c.id %}" style="margin-left: 10pt;margin-right: 10pt; width: 370pt">{{ c.title }}</a>#}
+{#    {% endfor %}#}
+{#    </div>#}
 
 </div>
 

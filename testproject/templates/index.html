@@ -1,4 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block title %}Afterline{% endblock title %}
+
+{% block content %}
+    <div class="d-flex flex-row mx-5" style="margin-top:86px">
+        <div id="left">
+            <h1 style="font-size: 48pt">Afterline</h1>
+            <h2 class="text-secondary">The next best thing to being there.</h2>
+            <hr/>
+            <p>At Afterline we believe that virtual tabletops (VTTs) should be free for everyone, and that
+    the best features for playing role-playing games virtually shouldn't have to be hidden
+    behind a paywall. Our goal is to create a completely free VTT for everyone to use, regardless
+    of what game you plan on playing. Afterline is the most customizable VTT to date, so you can run or play in the game you've always wanted to.</p>
+            <p>Afterline only has one pricing plan&#8212;and it's free, the way we believe it should be. Try out Afterline
+    today, and you'll see why we believe Afterline truly is the next best thing to playing in-person.
+            </p>
+            {% if not request.user.is_authenticated %}
+                <div class="d-flex btn-group mx-5" role="group" style="width:50%">
+                    <a class="btn btn-primary" href="{% url 'login' %}">Login Now</a>
+                    <a class="btn btn-success" href="{% url 'register' %}">Or Register for an Account</a>
+                </div>
+            {% endif %}
+        </div>
+        <div id="right" style>
+            <img src="{% static 'biglogo.png' %}" alt="Afterline" width="512px">
+        </div>
+    </div>
+{% endblock content %}

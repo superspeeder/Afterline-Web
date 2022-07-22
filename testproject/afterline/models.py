@@ -21,6 +21,9 @@ class AfterlineUser(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True,
                                 to_field='username')
 
+    def __str__(self):
+        return self.user.username
+
 
 class AfterlineOwnedResource(models.Model):
     resource_uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -36,6 +39,9 @@ class Campaign(models.Model):
 
     resource = models.ForeignKey(AfterlineOwnedResource, on_delete=models.CASCADE, null=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Player(models.Model):
     user = models.ForeignKey(AfterlineUser, on_delete=models.CASCADE)
@@ -44,6 +50,9 @@ class Player(models.Model):
 
     class Meta:
         unique_together = [["user", "game"]]
+
+    def __str__(self):
+        return f"{self.user.__str__()} in '{self.game.title}'"
 
 
 class MessageNotification(models.Model):
